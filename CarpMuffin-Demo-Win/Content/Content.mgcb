@@ -143,3 +143,15 @@
 /processorParam:TextureFormat=Color
 /build:gfx/playerShip.png
 
+#begin sfx/pep.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/pep.wav
+
+#begin sfx/spaceTrash1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/spaceTrash1.wav
+

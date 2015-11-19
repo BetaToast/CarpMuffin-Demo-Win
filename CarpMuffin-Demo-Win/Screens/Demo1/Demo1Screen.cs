@@ -4,8 +4,10 @@ using CarpMuffin.Screens;
 using CarpMuffin.Sprites;
 using CarpMuffin_Demo_Win.Demo1;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace CarpMuffin_Demo_Win.Screens.Demo1
 {
@@ -22,8 +24,11 @@ namespace CarpMuffin_Demo_Win.Screens.Demo1
         private Texture2D _meteor;
         private Texture2D _playerShip;
 
+        private SoundEffect _laserShot;
+        private SoundEffect _blowUp;
+
         private List<Enemy> _enemies = new List<Enemy>();
-        private List<Meteor> _meteors = new List<Meteor>(); 
+        private List<Meteor> _meteors = new List<Meteor>();
         private Player _player;
         private List<Bullet> _bullets = new List<Bullet>();
         private List<Bullet> _deadBullets = new List<Bullet>();
@@ -43,6 +48,10 @@ namespace CarpMuffin_Demo_Win.Screens.Demo1
             _enemyUfo = Textures.Load(TextureNames.Demo1.EnemyUFO);
             _meteor = Textures.Load(TextureNames.Demo1.Meteor);
             _playerShip = Textures.Load(TextureNames.Demo1.PlayerShip);
+
+            _laserShot = SoundEffects.Load(AudioNames.Demo1.LaserShot);
+            _blowUp = SoundEffects.Load(AudioNames.Demo1.BlowUp);
+
 
             LoadGameObjects();
         }
@@ -196,10 +205,10 @@ namespace CarpMuffin_Demo_Win.Screens.Demo1
         public override void Draw(GameTime gameTime)
         {
             SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
-                DrawBullets(gameTime);
-                DrawEnemies(gameTime);
-                DrawPlayer(gameTime);
-                DrawMeteors(gameTime);
+            DrawBullets(gameTime);
+            DrawEnemies(gameTime);
+            DrawPlayer(gameTime);
+            DrawMeteors(gameTime);
             SpriteBatch.End();
         }
 
@@ -243,6 +252,8 @@ namespace CarpMuffin_Demo_Win.Screens.Demo1
             {
                 Position = new Vector2(_player.Position.X + (_player.Size.X / 2), _player.Position.Y)
             });
+
+            _laserShot.Play();
         }
 
         #endregion
@@ -290,6 +301,8 @@ namespace CarpMuffin_Demo_Win.Screens.Demo1
             enemy.IsVisible = false;
 
             _enemiesKilled++;
+
+            _blowUp.Play();
 
             if (_enemiesKilled >= _enemies.Count)
             {

@@ -47,6 +47,7 @@
     <Compile Include="Demo1\Meteor.cs" />
     <Compile Include="Demo1\Player.cs" />
     <Compile Include="Scenes\Demo1Scene.cs" />
+    <Compile Include="Screens\AudioNames.cs" />
     <Compile Include="Screens\Demo1\Demo1Screen.cs" />
     <Compile Include="Screens\ScreenNames.cs" />
     <Compile Include="Screens\Splash\CarpMuffinSplashScreen.cs" />
