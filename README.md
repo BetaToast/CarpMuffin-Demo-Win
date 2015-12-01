@@ -11,9 +11,7 @@ Base engine code is up, but more work is coming for demo's and documentation.
 to get the project to work just clone the develop branch, and init and update the submodules.
 example.  
 
-*git clone -b develop https://github.com/BetaToast/CarpMuffin-Demo-Win.git
+*git clone -b develop https://github.com/BetaToast/CarpMuffin-Demo-Win.git --recursive
 
-*git submodule init
-
-*git submodule update
+*git pull --recurse-submodules
 
